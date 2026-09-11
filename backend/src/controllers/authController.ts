@@ -1,7 +1,7 @@
-import User from "../models/User";
-import { Request, Response } from "express";
+import User from "../models/User.js";
+import type { Request, Response } from "express";
 import bcrypt from "bcryptjs";
-import  generateToken  from "../utils/generateToken";
+import  generateToken  from "../utils/generateToken.js";
 
 export const register = async (req: Request, res: Response) => {
   try {
@@ -22,7 +22,7 @@ export const register = async (req: Request, res: Response) => {
 
     res.status(201).json({
       message: "User registered successfully",
-      user: { id: user._id, name: user.username, email: user.email, password: user.password },
+      user: { id: user._id, name: user.username, email: user.email,},
     });
   } catch (error) {
     res.status(500).json({ message: "server error." });
@@ -43,7 +43,7 @@ export const login = async (req: Request, res: Response) => {
 
     const token = generateToken(user._id.toString());
 
-    res.json({
+    res.status(200).json({
       message: "Login Successful",
       token,
       user: {
