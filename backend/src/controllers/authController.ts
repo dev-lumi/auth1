@@ -59,6 +59,3 @@ export const login = async (req: Request, res: Response) => {
 };
 
 
-export const logout = async function name(params:type) {
-  
-}
